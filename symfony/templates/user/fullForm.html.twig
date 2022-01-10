@@ -1,0 +1,70 @@
+<div class="input-field">
+    <input id="login" type="text" name="_login" value="{{ user.login }}" class="validate" required />
+    <label for="login">Login :</label>
+</div>
+
+<div class="input-field">
+    <input id="mdp" type="password" name="_mdp" value="{{ user.mdp }}" class="validate" required />
+    <label for="mdp">Mot de passe :</label>
+</div>
+
+<div class="input-field">
+    <input id="nom" type="text" name="_nom" value="{{ user.nom }}" class="validate" />
+    <label for="nom">Nom :</label>
+</div>
+
+<div class="input-field">
+    <input id="prenom" type="text" name="_prenom" value="{{ user.prenom }}" class="validate" />
+    <label for="prenom">Prenom :</label>
+</div>
+
+<div>
+    <label>Sexe :</label>
+    <p style="word-spacing: 20px">
+        <label>
+            <input name="_sexe" type="radio" value="h" {% if user.sexe == "h" %} checked {% endif %} />
+            <span>Homme</span>
+        </label>
+        <label>
+            <input name="_sexe" type="radio" value="f" {% if user.sexe == "f" %} checked {% endif %} />
+            <span>Femme</span>
+        </label>
+        <label>
+            <input name="_sexe" type="radio" value="a" {% if user.sexe == "a" %} checked {% endif %} />
+            <span>Autre</span>
+        </label>
+    </p>
+</div>
+
+<div class="input-field">
+    <input id="email" type="text" name="_email" value="{{ user.email }}" pattern=".+[@].+[\.].+" class="validate" oninput="inputcheck(this, 'Veuillez renseigner une adresse email valide')" />
+    <label for="email">Email :</label>
+</div>
+
+<div class="input-field">
+    <input id="naissance" type="text" name="_naissance" value="{{ user.naissance is empty ? "" : user.naissance|date("d/m/Y") }}" class="datepicker validate">
+    <label for="naissance">Date de naissance :</label>
+</div>
+
+<div class="row">
+    <div class="input-field col s6">
+        <input id="adresse1" type="text" name="_adresse1" value="{{ user.adresse ? (user.adresse|split('|'))[0] : '' }}" pattern="[^\|]*" class="validate" />
+        <label for="adresse1">Adresse postale :</label>
+    </div>
+    <div class="input-field col s4">
+        <input id="adresse2" type="text" name="_adresse2" value="{{ user.adresse ? (user.adresse|split('|'))[1] : '' }}" pattern="[^\|]*" class="validate" />
+        <label for="adresse2">Ville :</label>
+    </div>
+    <div class="input-field col s2">
+        <input id="adresse3" type="text" name="_adresse3" value="{{ user.adresse ? (user.adresse|split('|'))[2] : '' }}" pattern="[0-9]*" class="validate" />
+        <label for="adresse3">Code Postal :</label>
+    </div>
+
+</div>
+
+
+<div class="input-field">
+    <input id="telephone" type="text" name="_telephone" value="{{ user.telephone }}" pattern="[0-9]{10}" class="validate" oninput="inputcheck(this, 'Veuillez renseigner un numéro de téléphone valide [0600000000]')" />
+    <label for="telephone">No de telephone :</label>
+    <span class="helper-text" style="color: #e23317">{{ error }}</span>
+</div>

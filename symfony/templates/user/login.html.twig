@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <h4 style="text-align: center; margin-top: 30px">Connexion</h4>
+
+        <form method="post" style="margin-bottom: 50px">
+            <div class="input-field">
+                <input id="login" type="text" name="_login" value="{{ login }}" required/>
+                <label for="login">Login :</label>
+            </div>
+
+            <div class="input-field">
+                <input id="mdp" type="password" name="_mdp" required/>
+                <label for="mdp">Mot de passe :</label>
+                <span class="helper-text" style="color: #e23317">{{ error }}</span>
+            </div>
+
+            <button class="waves-effect waves-light btn green lighten-2" style="width: 100%" type="submit">login</button>
+            <div class="right" style="margin-top: 10px">
+                Pas de compte ? - <a href="{{ path('register') }}">Créer un compte</a>
+            </div>
+
+
+        </form>
+
+
+
+    </div>
+
+{% endblock %}

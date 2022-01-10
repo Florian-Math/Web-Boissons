@@ -1,0 +1,9 @@
+<a class="z-depth-1 elem" href="{{ path('recette', {'id' : recette.id}) }}">
+    <div class="valign-wrapper" style="gap: 10px">
+        <div style="margin-left: 2px; height: 35px; width: 50px; padding: 0; text-align: center;">
+            <img style="border-radius:5px; max-height: 100%;" src="{{ asset_exists('Photos/'~ recette.titre|toImgPath ~'.jpg') ? asset('Photos/'~ recette.titre|toImgPath ~'.jpg') : asset('Photos/default.png') }}">
+        </div>
+        <div class="col s10 truncate" style="flex: auto; text-align: left">{{ recette.titre }}</div>
+    </div>
+
+</a>

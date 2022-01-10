@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <h4 style="text-align: center; margin-top: 30px">Modification profil</h4>
+
+        <form method="post" style="margin-bottom: 50px">
+            {% include 'user/fullForm.html.twig' %}
+
+            <button class="waves-effect waves-light btn" style="width: 100%" type="submit">Valider</button>
+            <a class="waves-effect waves-light btn grey" style="width: 100%; margin-top: 20px" type="submit" href="{{ path('profil') }}">Annuler</a>
+        </form>
+
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function inputcheck(e, message){
+            e.setCustomValidity("");
+            console.log(e.validity.valid)
+            if (!e.validity.valid) {
+                e.setCustomValidity(message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var options = {
+                'maxDate' : new Date(),
+                'format' : 'dd/mm/yyyy'
+            };
+            var instances = M.Datepicker.init(elems, options);
+        });
+    </script>
+
+{% endblock %}

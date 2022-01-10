@@ -1,0 +1,31 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="{{ path('home') }}" class="brand-logo left" style="margin-left: 10px">Boissons</a>
+
+
+        <ul id="nav-mobile" class="right">
+
+            <li><a href="{{ path('discover') }}">Hierarchie</a></li>
+            <li><a href="{{ path('search') }}">Recherche</a></li>
+            <li><a href="{{ path('panier') }}">Favoris</a></li>
+
+            {% if app.session.get('user') %}
+                <li><a class="dropdown-trigger" data-target="dropdown1" style="min-width: 150px">{{ app.session.get('user').login }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                <!-- Dropdown Structure -->
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="{{ path('profil') }}">Profil</a></li>
+                    <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                </ul>
+            {% else %}
+                <li><a href="{{ path('login') }}">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<script>
+    $( document ).ready(() => {
+        $(".dropdown-trigger").dropdown();
+    })
+
+</script>

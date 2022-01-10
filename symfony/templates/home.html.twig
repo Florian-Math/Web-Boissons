@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="center-align">
+            <h4>Gestionnaire de boissons</h4>
+            <p>
+                Ce site vous permet de rechercher des recettes de boissons grâce à la hierarchie d'aliments ou alors la recherche avancée et de les sauvegarder pour plus tard.
+            </p>
+        </div>
+
+        <div class="row">
+
+            <div class="col s5">
+                <h5>Hierarchie</h5>
+                <img class="responsive-img" style="cursor: pointer" src="{{ asset('Photos/default.png') }}" onclick="document.location.href = '{{ path('discover') }}';">
+            </div>
+
+            <div class="col s5 offset-s2">
+                <h5>Recherche avancée</h5>
+                <img class="responsive-img" style="cursor: pointer" src="{{ asset('Photos/default.png') }}" onclick="document.location.href = '{{ path('search') }}';">
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

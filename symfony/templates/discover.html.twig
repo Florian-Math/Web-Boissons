@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+    <div class="path-bar valign-wrapper grey darken-3">
+        <a href="{{ path('discover', {'path' : ""}) }}" class="breadcrumb">Aliment</a>
+        {% if paths is defined %}
+            {% for path in paths %}
+                <a href="{{ path('discover', {'path' : paths|slice(0, loop.index)|join('/')}) }}" class="breadcrumb">{{ path }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col s5">
+                <h4>Aliments</h4>
+                {% for aliment in aliments %}
+                    <a class="z-depth-1 elem" href="{{ path('discover', {'path' : app.request.get('path') == '' ? aliment.nomAliment : app.request.get('path') ~ '/' ~ aliment.nomAliment}) }}">
+                        <div class="valign-wrapper">
+                            <div class="col s12">{{ aliment.nomAliment }}</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="col s2" style="padding-top: 100px">
+                <i class="material-icons" style="font-size: 100px">arrow_forward</i>
+            </div>
+
+            <div class="col s5">
+                {% if recettes is defined %}
+                    <h4>Recettes</h4>
+                    {% for recette in recettes %}
+                        {% include 'recetteItem.html.twig' %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+
+
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+
+        .elem{
+            display: block;
+            width: 100%;
+            height: 40px;
+            margin-bottom: 5px;
+            font-size: 17px;
+            color: #0a0a0a;
+
+            border-radius: 5px;
+        }
+
+        .elem .valign-wrapper{
+            height: 100%;
+        }
+
+        .elem:hover{
+            background-color: #ebebeb;
+            box-shadow: inset 0 2px 2px 0 rgb(0 0 0 / 14%),
+            inset 0 3px 1px -2px rgb(0 0 0 / 12%),
+            inset 0 1px 5px 0 rgb(0 0 0 / 20%)
+        }
+
+        .path-bar{
+            width: fit-content;
+            height: 40px;
+
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+
+            padding-left: 10px;
+            padding-right: 15px;
+
+            border-radius: 10px;
+        }
+
+        .breadcrumb{
+            line-height: 0;
+            font-size: 15px;
+        }
+
+        .breadcrumb:before{
+            vertical-align: middle;
+        }
+
+    </style>
+
+{% endblock %}
